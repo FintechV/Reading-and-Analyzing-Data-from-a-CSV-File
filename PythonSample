@@ -1,0 +1,18 @@
+import csv
+
+with open('students.csv', 'r') as file:
+    reader = csv.DictReader(file)
+    data = list(reader)
+
+total_students = len(data)
+average_grade = sum(int(row['Grade']) for row in data) / total_students
+highest_grade = max(int(row['Grade']) for row in data)
+lowest_grade = min(int(row['Grade']) for row in data)
+
+print(f"Total students: {total_students}")
+print(f"Average grade: {average_grade:.2f}")
+print(f"Highest grade: {highest_grade}")
+print(f"Lowest grade: {lowest_grade}")
+
+top_students = [row['Name'] for row in data if int(row['Grade']) > 85]
+print("Top students:", top_students)
